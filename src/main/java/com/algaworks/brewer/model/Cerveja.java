@@ -2,6 +2,7 @@ package com.algaworks.brewer.model;
 
 import java.math.BigDecimal;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,12 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.algaworks.brewer.validation.SKU;
-import com.sun.istack.NotNull;
+
 
 @Entity
 @Table(name = "cerveja")
@@ -34,25 +39,38 @@ public class Cerveja {
 	@NotBlank(message = "Nome e Obrigatorio")
 	private String nome;
 	
+	@NotBlank(message = "A descricao e Obrigatoria!")
 	@Size(min = 1, max = 50, message  = "Descricao deve estar entre 1 e 50!")
 	private String descricao;
 	
+	@NotNull(message = "Valor e Obrigatorio!")
+	@DecimalMin("0.01")
+	@DecimalMax(value = "999999.99", message = "O valor da Cerveja deve ser menor que R$ 9.999.999,99.")
 	private BigDecimal valor;
 	
+	@NotNull(message = "O Teor Alcoolico e Obrigatorio!")
+	@DecimalMax(value = "100.0", message = "O valor do Teor Alcoolico, deve ser menor do que 100.")
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 		
+	@NotNull(message = "Comissao e Obrigatoria!")
+	@DecimalMax(value = "100", message = "O valor da Comissao, deve ser menor que 100.")
 	private BigDecimal comissao;
 	
+	@NotNull(message = "A quantidade em Estoque e Obrigatoria!")
+	@Max(value = 9999, message = "A quantidade de Estoque deve ser menor que 9.999.")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
+	@NotNull(message = "A Origem e obrigatoria!")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
+	@NotNull(message = "O Sabor e obrigatorio!")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
+	@NotNull(message = "O Estilo e obrigatorio!")
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
