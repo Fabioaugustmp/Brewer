@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -60,9 +59,9 @@ public class Cerveja {
 	private BigDecimal comissao;
 	
 	@NotNull(message = "A quantidade em Estoque e Obrigatoria!")
-	@Max(value = 9999, message = "A quantidade de Estoque deve ser menor que 9.999.")
+	@Max(value = 9999, message = "A quantidade de Estoque deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
-	private Integer quantidadeEstoque;
+	private Long quantidadeEstoque;
 	
 	@NotNull(message = "A Origem e obrigatoria!")
 	@Enumerated(EnumType.STRING)
@@ -138,11 +137,11 @@ public class Cerveja {
 		this.comissao = comissao;
 	}
 
-	public Integer getQuantidadeEstoque() {
+	public Long getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+	public void setQuantidadeEstoque(Long quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
