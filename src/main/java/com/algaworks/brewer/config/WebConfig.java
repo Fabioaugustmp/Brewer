@@ -28,6 +28,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
+import com.algaworks.brewer.thymeleaf.BrewerDialect;
 
 @Configuration
 @ComponentScan(basePackageClasses = { CervejasController.class })
@@ -66,6 +67,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
+		
+		engine.addDialect(new BrewerDialect());
 		return engine;
 	}
 

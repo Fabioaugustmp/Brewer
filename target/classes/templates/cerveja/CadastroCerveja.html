@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:brewer="http://brewer.algaworks.com">
 
 <head>
 	<meta charset="UTF-8" />
@@ -128,7 +129,7 @@
 					
 
 					<div class="row">
-						<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('sku')} ? has-error">
+						<div class="col-sm-2  form-group" brewer:classforerror="sku">
 							<label for="sku" class="control-label">SKU</label>
 							<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 						</div>
@@ -195,7 +196,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
+						<div class="col-sm-3  form-group" brewer:classforerror="sku">
 							<label for="valor" class="control-label">Valor</label>
 							<div class="input-group">
 								<div class="input-group-addon">R$</div>
